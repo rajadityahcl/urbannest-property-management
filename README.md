@@ -1,79 +1,246 @@
-UrbanNest Property Management System
-PostgreSQL + FastAPI + React + JWT Authentication
-Project Overview
+# 🏢 UrbanNest Property Management System
 
-UrbanNest is a full-stack Property Management System designed to streamline the management of residential and commercial properties. The platform enables property administrators to manage properties, units, leases, rent payments, and maintenance requests while allowing tenants to interact with the system through a secure web portal.
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green)
+![React](https://img.shields.io/badge/React-Frontend-61DAFB)
+![JWT](https://img.shields.io/badge/JWT-Authentication-orange)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-ORM-red)
 
-The application utilizes:
+A full-stack Property Management System built using **PostgreSQL, FastAPI, React, and JWT Authentication**.
 
-PostgreSQL for relational database management
-FastAPI for backend API development
-React.js for frontend user interface
-JWT Authentication for secure login and authorization
-SQLAlchemy ORM for database interactions
-Features
-Property Administrator
-User Management
-Register and manage users
-Assign roles (Admin / Tenant)
-View tenant profiles
-Property Management
-Add properties
-Update property information
-Remove properties
-View all managed properties
-Unit Management
-Add rental units
-Update unit status
-Track occupancy
-Lease Management
-Create lease agreements
-Assign tenants to units
-Manage lease lifecycle
-Rent Management
-Track rent payments
-View payment history
-Monitor overdue payments
-Maintenance Management
-Review maintenance requests
-Update request status
-Track issue resolution
-Tenant Portal
-Authentication
-Secure registration
-Secure login using JWT
-Property Information
-View assigned property
-View unit information
-Maintenance Requests
-Submit maintenance requests
-Track request status
-Rent Tracking
-View payment history
-Monitor outstanding rent
-Technology Stack
-Layer	Technology
-Frontend	React.js
-Backend	FastAPI
-Authentication	JWT
-ORM	SQLAlchemy
-Database	PostgreSQL
-API Documentation	Swagger UI
-Version Control	GitHub
-Deployment	Render / Netlify / Neon
-Project Architecture
-React Frontend
-      │
-      ▼
-FastAPI Backend
-      │
-      ▼
-SQLAlchemy ORM
-      │
-      ▼
-PostgreSQL Database
-Project Structure
-urbannest-postgres/
+UrbanNest enables property administrators and tenants to manage rental properties, leases, rent payments, and maintenance requests through a secure web-based platform.
+
+---
+
+# 📋 Table of Contents
+
+- Overview
+- Features
+- System Architecture
+- Technology Stack
+- Database Design
+- Project Structure
+- Installation Guide
+- API Endpoints
+- Authentication
+- Screenshots
+- Future Enhancements
+- Author
+
+---
+
+# 🚀 Overview
+
+UrbanNest is designed to simulate a real-world property management platform where:
+
+### Property Administrators can:
+- Manage properties
+- Manage rental units
+- Assign tenants
+- Track lease agreements
+- Monitor rent payments
+- Manage maintenance requests
+
+### Tenants can:
+- Login securely
+- View assigned properties
+- Submit maintenance requests
+- Track request status
+- View lease information
+- Monitor rent payment history
+
+---
+
+# ✨ Features
+
+## Authentication & Security
+
+- JWT Authentication
+- Password Hashing using Bcrypt
+- Protected API Endpoints
+- Role-Based Access Control
+- Secure Login & Registration
+
+---
+
+## Property Management
+
+- Create Properties
+- View Properties
+- Update Properties
+- Delete Properties
+
+---
+
+## Unit Management
+
+- Add Units
+- Track Unit Occupancy
+- Update Unit Status
+
+---
+
+## Lease Management
+
+- Create Lease Agreements
+- Assign Tenants to Units
+- Track Lease Status
+
+---
+
+## Rent Management
+
+- Record Rent Payments
+- Track Payment Status
+- Generate Payment Reports
+
+---
+
+## Maintenance Requests
+
+- Submit Requests
+- Assign Priority
+- Track Request Status
+- Admin Resolution Workflow
+
+---
+
+# 🏗️ System Architecture
+
+```text
+┌───────────────────────┐
+│      React Frontend   │
+└──────────┬────────────┘
+           │ REST API
+           ▼
+┌───────────────────────┐
+│      FastAPI Backend  │
+└──────────┬────────────┘
+           │ SQLAlchemy ORM
+           ▼
+┌───────────────────────┐
+│     PostgreSQL DB     │
+└───────────────────────┘
+```
+
+---
+
+# 💻 Technology Stack
+
+| Layer | Technology |
+|---------|------------|
+| Frontend | React.js |
+| Backend | FastAPI |
+| Database | PostgreSQL |
+| ORM | SQLAlchemy |
+| Authentication | JWT |
+| Password Security | Bcrypt |
+| API Testing | Swagger UI |
+| Version Control | GitHub |
+| Deployment | Render + Netlify + Neon |
+
+---
+
+# 🗄️ Database Design
+
+## Core Tables
+
+### Users
+
+Stores user information.
+
+| Column |
+|----------|
+| user_id |
+| full_name |
+| email |
+| password_hash |
+| role |
+| phone |
+| created_at |
+
+---
+
+### Properties
+
+Stores property details.
+
+| Column |
+|----------|
+| property_id |
+| admin_id |
+| property_name |
+| address |
+| city |
+| state |
+| zipcode |
+
+---
+
+### Units
+
+Stores rental unit information.
+
+| Column |
+|----------|
+| unit_id |
+| property_id |
+| unit_number |
+| rent_amount |
+| status |
+
+---
+
+### Leases
+
+Stores lease agreements.
+
+| Column |
+|----------|
+| lease_id |
+| tenant_id |
+| unit_id |
+| start_date |
+| end_date |
+| monthly_rent |
+| status |
+
+---
+
+### Rent Payments
+
+Stores payment records.
+
+| Column |
+|----------|
+| payment_id |
+| lease_id |
+| amount |
+| payment_date |
+| payment_status |
+
+---
+
+### Maintenance Requests
+
+Stores maintenance tickets.
+
+| Column |
+|----------|
+| request_id |
+| tenant_id |
+| unit_id |
+| issue_title |
+| issue_description |
+| priority |
+| status |
+
+---
+
+# 📂 Project Structure
+
+```text
+UrbanNest-Property-Management/
 │
 ├── backend/
 │   ├── main.py
@@ -103,244 +270,289 @@ urbannest-postgres/
 │
 ├── docs/
 │   ├── ERD.png
-│   ├── DataDictionary.xlsx
-│   ├── Project_Report.docx
-│   └── Presentation.pptx
+│   ├── Project_Report.pdf
+│   ├── API_Documentation.pdf
+│   └── Screenshots/
 │
-└── README.md
-Database Schema
-Core Tables
-Users
+├── screenshots/
+│
+├── README.md
+│
+└── .gitignore
+```
 
-Stores system users.
+---
 
-users
+# ⚙️ Installation Guide
 
-Fields:
+## 1. Clone Repository
 
-user_id
-full_name
-email
-password_hash
-role
-phone
-created_at
-Properties
-
-Stores property information.
-
-properties
-
-Fields:
-
-property_id
-admin_id
-property_name
-address
-city
-state
-zipcode
-created_at
-Units
-
-Stores rental units.
-
-units
-
-Fields:
-
-unit_id
-property_id
-unit_number
-rent_amount
-status
-Leases
-
-Stores lease agreements.
-
-leases
-
-Fields:
-
-lease_id
-tenant_id
-unit_id
-start_date
-end_date
-monthly_rent
-status
-Rent Payments
-
-Stores payment records.
-
-rent_payments
-
-Fields:
-
-payment_id
-lease_id
-amount
-payment_date
-payment_status
-created_at
-Maintenance Requests
-
-Stores maintenance tickets.
-
-maintenance_requests
-
-Fields:
-
-request_id
-tenant_id
-unit_id
-issue_title
-issue_description
-priority
-status
-created_at
-Entity Relationship Diagram
-Users
-  │
-  ├── Properties
-  │       │
-  │       └── Units
-  │              │
-  │              └── Leases
-  │                     │
-  │                     └── Rent Payments
-  │
-  └── Maintenance Requests
-JWT Authentication Flow
-Registration
-User
-  ↓
-Register
-  ↓
-Password Hashing (bcrypt)
-  ↓
-Store in PostgreSQL
-Login
-User Login
-    ↓
-Validate Credentials
-    ↓
-Generate JWT Token
-    ↓
-Return Token
-Protected APIs
-Client Request
-      ↓
-JWT Token
-      ↓
-Authorization Header
-      ↓
-FastAPI Middleware
-      ↓
-Access Granted
-Installation Guide
-Step 1: Clone Repository
+```bash
 git clone https://github.com/YOUR_USERNAME/UrbanNest-Property-Management.git
 
 cd UrbanNest-Property-Management
-Step 2: Setup PostgreSQL
+```
 
-Create database:
+---
 
+## 2. Create PostgreSQL Database
+
+```sql
 CREATE DATABASE urbannest_db;
+```
 
 Execute:
 
+```bash
 database/schema.sql
+```
 
-Load sample data:
+Load Sample Data:
 
+```bash
 database/seed_data.sql
-Step 3: Configure Backend
+```
+
+---
+
+## 3. Configure Backend
 
 Navigate:
 
+```bash
 cd backend
+```
 
-Install dependencies:
+Install Dependencies:
 
+```bash
 pip install -r requirements.txt
+```
 
-Configure .env
+Create `.env`
 
+```env
 DATABASE_URL=postgresql://postgres:password@localhost:5432/urbannest_db
 
-SECRET_KEY=urbannest_secret_key
+SECRET_KEY=your_secret_key
 
 ALGORITHM=HS256
 
 ACCESS_TOKEN_EXPIRE_MINUTES=60
-Step 4: Start Backend
+```
+
+---
+
+## 4. Start Backend Server
+
+```bash
 uvicorn main:app --reload
+```
 
 Backend URL:
 
+```text
 http://localhost:8000
+```
 
 Swagger Documentation:
 
+```text
 http://localhost:8000/docs
-Step 5: Configure Frontend
+```
 
-Navigate:
+---
 
+## 5. Configure Frontend
+
+```bash
 cd frontend
 
-Install packages:
-
 npm install
+```
 
-Start application:
+Start React Application:
 
+```bash
 npm run dev
+```
 
 Frontend URL:
 
+```text
 http://localhost:5173
-API Endpoints
-Authentication
-Method	Endpoint	Description
-POST	/register	Register User
-POST	/login	User Login
-GET	/me	Current User
-Properties
-Method	Endpoint
-GET	/properties
-POST	/properties
-Maintenance
-Method	Endpoint
-GET	/maintenance-requests
-POST	/maintenance-requests
-Dashboard
-Method	Endpoint
-GET	/dashboard-summary
-Sample Login Credentials
-Admin
-Email: admin@urbannest.com
-Password: admin123
-Role: Admin
-Tenant
-Email: tenant@urbannest.com
-Password: tenant123
-Role: Tenant
-Future Enhancements
-Phase 2
-Role Based Access Control (RBAC)
-Property Images Upload
-Email Notifications
-SMS Notifications
-Payment Gateway Integration
-Lease Document Upload
-Real-Time Dashboard
-WebSocket Notifications
-Phase 3
-AI Maintenance Prediction
-Rent Price Forecasting
-Occupancy Analytics
-Tenant Churn Prediction
-Power BI Dashboard Integration
+```
+
+---
+
+# 🔐 Authentication Workflow
+
+## Registration
+
+```text
+User Registration
+        │
+        ▼
+Password Hashing
+        │
+        ▼
+Store in PostgreSQL
+```
+
+---
+
+## Login
+
+```text
+User Login
+      │
+      ▼
+Validate Credentials
+      │
+      ▼
+Generate JWT Token
+      │
+      ▼
+Return Access Token
+```
+
+---
+
+## Protected APIs
+
+```text
+Frontend Request
+       │
+       ▼
+Bearer Token
+       │
+       ▼
+JWT Validation
+       │
+       ▼
+Authorized Access
+```
+
+---
+
+# 📡 API Endpoints
+
+## Authentication
+
+| Method | Endpoint |
+|----------|----------|
+| POST | /register |
+| POST | /login |
+| GET | /me |
+
+---
+
+## Properties
+
+| Method | Endpoint |
+|----------|----------|
+| GET | /properties |
+| POST | /properties |
+
+---
+
+## Units
+
+| Method | Endpoint |
+|----------|----------|
+| GET | /units |
+| POST | /units |
+
+---
+
+## Leases
+
+| Method | Endpoint |
+|----------|----------|
+| GET | /leases |
+| POST | /leases |
+
+---
+
+## Rent Payments
+
+| Method | Endpoint |
+|----------|----------|
+| GET | /rent-payments |
+| POST | /rent-payments |
+
+---
+
+## Maintenance Requests
+
+| Method | Endpoint |
+|----------|----------|
+| GET | /maintenance-requests |
+| POST | /maintenance-requests |
+
+---
+
+## Dashboard
+
+| Method | Endpoint |
+|----------|----------|
+| GET | /dashboard-summary |
+
+---
+
+# 📊 Future Enhancements
+
+## Phase 2
+
+- Property Image Upload
+- Email Notifications
+- SMS Alerts
+- Payment Gateway Integration
+- Document Upload
+- Advanced Reporting
+
+---
+
+## Phase 3
+
+- AI-Powered Maintenance Prediction
+- Tenant Churn Analytics
+- Rent Price Forecasting
+- Occupancy Analytics Dashboard
+- Predictive Property Insights
+
+---
+
+# 🎓 Academic Learning Outcomes
+
+This project demonstrates:
+
+- Database Design & Normalization
+- PostgreSQL Administration
+- SQL Query Development
+- REST API Development
+- Authentication & Authorization
+- Full-Stack Application Development
+- Cloud Deployment
+- Software Engineering Best Practices
+
+---
+
+# 👨‍💻 Author
+
+### Aditya Raj
+
+MS Business Analytics & Project Management  
+University of Connecticut
+
+**GitHub:** https://github.com/rajadityahcl
+
+**LinkedIn:** https://www.linkedin.com/in/rajaditya1992
+
+---
+
+# 📄 License
+
+This project is developed for educational, portfolio, and research purposes.
+
+© 2026 Aditya Raj. All Rights Reserved.
